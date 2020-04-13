@@ -1,1 +1,1 @@
-web gunicorn Waiver:Waiver
+web: gunicorn Waiver.wsgi
