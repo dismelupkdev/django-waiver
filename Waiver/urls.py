@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import LandingPageView, NewWavierPageView
+from .views import LandingPageView, create_waiver, SuccessPageView, ErrorPageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LandingPageView.as_view(), name="landing"),
-    path('waiver', NewWavierPageView.as_view(), name="Create a new Waiver"),
+    path('waiver/', create_waiver, name="Create a new Waiver"),
+    path('success/', SuccessPageView.as_view(), name="success"),
+    path('error/', ErrorPageView.as_view(), name="error"),
 ]

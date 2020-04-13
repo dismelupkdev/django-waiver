@@ -50,8 +50,8 @@ class Waiver(TimeStamp):
 # SignedWaiver Table
 class SignedWaiver(TimeStamp):
   completed_date = models.DateField(max_length=20, default='', null=True)
-  contact_id = models.ForeignKey(Contact, on_delete=models.CASCADE, default='', null=True)
-  waiver_id = models.ForeignKey(Waiver, on_delete=models.CASCADE, default='', null=True)
+  contact = models.ForeignKey(Contact, on_delete=models.CASCADE, default='', null=True)
+  waiver = models.ForeignKey(Waiver, on_delete=models.CASCADE, default='', null=True)
 
   def save(self, **kwargs):
     super(SignedWaiver, self).save()
