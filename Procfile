@@ -1,1 +1,1 @@
-web: gunicorn Waiver.wsgi
+web: gunicorn Waiver.wsgi --log-file -

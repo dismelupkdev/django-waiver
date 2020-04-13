@@ -47,6 +47,7 @@ def create_waiver(request):
     try:
       already_exists = Contact.objects.get(email= all_data.get('email'))
       if already_exists:
+        print('that waiver already exists')
         return redirect('/error')
     except Exception as e:
       pass
@@ -78,4 +79,5 @@ def create_waiver(request):
       signed_waiver.save()
       return redirect('/success')
     except Exception as e:
+      print('error = ', e)
       return redirect('/error')
