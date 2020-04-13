@@ -37,16 +37,20 @@
   color: #007bff;
 }
 
-div.masthead {
+.page-section {
   text-align: center;
 }
 
-div.masthead .intro-text {
-  padding-top: 150px;
+.page-section {
+  padding: 100px 0;
+}
+
+.page-section .intro-text {
+  padding-top: 50px;
   padding-bottom: 100px;
 }
 
-div.masthead .intro-text .intro-lead-in {
+.page-section .intro-text .intro-lead-in {
   font-size: 22px;
   font-style: italic;
   line-height: 22px;
@@ -54,7 +58,7 @@ div.masthead .intro-text .intro-lead-in {
   font-family: 'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-div.masthead .intro-text .intro-heading {
+.page-section .intro-text .intro-heading {
   font-size: 50px;
   font-weight: 700;
   line-height: 50px;
@@ -63,18 +67,18 @@ div.masthead .intro-text .intro-heading {
 }
 
 @media (min-width: 768px) {
-  div.masthead .intro-text {
-    padding-top: 300px;
+  .page-section .intro-text {
+    padding-top: 200px;
     padding-bottom: 200px;
   }
-  div.masthead .intro-text .intro-lead-in {
+  .page-section .intro-text .intro-lead-in {
     font-size: 40px;
     font-style: italic;
     line-height: 40px;
     margin-bottom: 25px;
     font-family: 'Droid Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   }
-  div.masthead .intro-text .intro-heading {
+  .page-section .intro-text .intro-heading {
     font-size: 75px;
     font-weight: 700;
     line-height: 75px;
