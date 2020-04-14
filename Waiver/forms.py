@@ -3,6 +3,7 @@ import datetime
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
+# Contact Form
 class ContactForm(forms.Form):
   def __init__(self, *args, **kwargs):
     super(ContactForm, self).__init__(*args, **kwargs)

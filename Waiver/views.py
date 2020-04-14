@@ -6,13 +6,14 @@ from django.views.generic import TemplateView
 from .forms import ContactForm
 from .models import Contact, Waiver, SignedWaiver
 
+# Landing Page
 class LandingPageView(TemplateView):
   template_name="landing.html"
 
   def get_context_data(self, **kwargs):
     return { 'data': '' }
 
-
+# New Waiver Page including Waiver form
 class NewWavierPageView(TemplateView):
   template_name="new_waiver.html"
   contact_form = ContactForm
@@ -22,28 +23,33 @@ class NewWavierPageView(TemplateView):
     context['contact_form'] = self.contact_form
     return context
 
-
+# Success Page indicating that the operation is successfully done
 class SuccessPageView(TemplateView):
   template_name="success.html"
 
   def get_context_data(self, **kwargs):
     return { 'data': '' }
 
-
+# Error Page indicating that some error happened.
 class ErrorPageView(TemplateView):
   template_name="error.html"
 
   def get_context_data(self, **kwargs):
     return { 'data': '' }
 
-
+'''
+Create a new Contact.
+in case GET, new Contact Page including Contact form.
+in case POST, saving a new Contact. and then, redirect to whether success or error page.
+'''
 @csrf_exempt
 def create_waiver(request):
   if request.method == 'GET':
     return NewWavierPageView.as_view()(request)
   elif request.method == 'POST':
-    current_date = datetime.date.today()
-    all_data = request.POST
+    current_date = datetime.date.today() # as default, SignedWaiver's completed_date equals to current date.
+    all_data = request.POST # get all data from the Contact Form
+    # Check if the Contact already exists.
     try:
       already_exists = Contact.objects.get(email= all_data.get('email'))
       if already_exists:
@@ -52,6 +58,7 @@ def create_waiver(request):
     except Exception as e:
       pass
     try:
+      # Create if it is a new Contact
       contact_data = Contact.objects.create(
         first_name=all_data.get('first_name', '0'),
         last_name=all_data.get('last_name', '0'),
@@ -70,11 +77,13 @@ def create_waiver(request):
       )
       contact_data.save()
       contact_ref = Contact.objects.get(email=all_data.get('email', '0'))
+      # Create a new standard Waiver, if no exist.
       if not Waiver.objects.filter(id=1):
         Waiver.objects.create(
           name="Standard Waiver",
         ).save()
       waiver_ref = Waiver.objects.get(id=1)
+      # Create a new SignedWaiver with newly created Contact and standard waiver
       signed_waiver = SignedWaiver.objects.create(waiver=waiver_ref, contact=contact_ref, completed_date=current_date)
       signed_waiver.save()
       return redirect('/success')
